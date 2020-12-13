@@ -22,7 +22,7 @@ all: MINILIBMX
 	
 MINILIBMX: $(OBJD) $(OBJS)
 	@printf "\x1b[32mcompile obj file:\x1b[33m ok\x1b[0m\n"
-	@$(CC) -o $(NAME) $(OBJS)
+	@$(CC) $(NCURSES) -o $(NAME) $(OBJS)
 	@printf "\x1b[32mcreate minilibmx:\x1b[33m ok\x1b[0m\n"
 
 $(OBJD)/%.o: $(SRCD)/%.c
