@@ -11,48 +11,58 @@ int main() {
 
     initscr();
     xr2 = getmaxx(stdscr) - 20;
-    init_pair(1, COLOR_GREEN, COLOR_RED);
-    // attron(COLOR_PAIR(1));
+    start_color();
+    init_pair(1, COLOR_WHITE, COLOR_WHITE);
+    init_pair(2, COLOR_WHITE, COLOR_BLACK);
     cbreak();
-    timeout(5);
+    timeout(10);
+    wbkgd(stdscr, COLOR_PAIR(2));
     noecho();
     curs_set(FALSE);
 
     for (int i = 0; i < sizer; ++i) {
+        attron(COLOR_PAIR(1));
         mvprintw(yr1 + i, xr1, "|");
         mvprintw(yr2 + i, xr2, "|");
+        attroff(COLOR_PAIR(1));
     }
 
     while (true) {
         switch (getch()) {
             case 'w':
                 if (yr1 - 1 >= 0) {
-                    // mvprintw(yr1 + sizer - 1, xr1, " ");
-                    mvaddch(yr1, xr1, ' ' | COLOR_PAIR(0));
+                    mvprintw(yr1 + sizer - 1, xr1, " ");
                     yr1--;
-                    // mvprintw(yr1, xr1, "|");
-                    mvaddch(yr1, xr1, COLOR_PAIR(1));
+                    attron(COLOR_PAIR(1));
+                    mvprintw(yr1, xr1, " ");
+                    attroff(COLOR_PAIR(1));
                 }
                 break;
             case 's':
                 if (getmaxy(stdscr) >= yr1 + sizer + 1) {
                     mvprintw(yr1, xr1, " ");
                     yr1++;
-                    mvprintw(yr1 + sizer - 1, xr1, "|");
+                    attron(COLOR_PAIR(1));
+                    mvprintw(yr1 + sizer - 1, xr1, " ");
+                    attroff(COLOR_PAIR(1));
                 }
                 break;
             case 65:
                 if (yr2 - 1 >= 0) {
                     mvprintw(yr2 + sizer - 1, xr2, " ");
                     yr2--;
-                    mvprintw(yr2, xr2, "|");
+                    attron(COLOR_PAIR(1));
+                    mvprintw(yr2, xr2, " ");
+                    attroff(COLOR_PAIR(1));
                 }
                 break;
             case 66:
                 if (getmaxy(stdscr) >= yr2 + sizer + 1) {
                     mvprintw(yr2, xr2, " ");
                     yr2++;
-                    mvprintw(yr2 + sizer - 1, xr2, "|");
+                    attron(COLOR_PAIR(1));
+                    mvprintw(yr2 + sizer - 1, xr2, " ");
+                    attroff(COLOR_PAIR(1));
                 }
                 break;
         }
@@ -65,10 +75,14 @@ int main() {
 
         if (direction) {
             mvprintw(ball_y, ball_x--, " ");
+            // attron(COLOR_PAIR(1));
             mvprintw(ball_y, ball_x, "o");
+            // attroff(COLOR_PAIR(1));
         } else {
             mvprintw(ball_y, ball_x++, " ");
-            mvprintw(ball_y, ball_x, "o");    
+            // attron(COLOR_PAIR(1));
+            mvprintw(ball_y, ball_x, "o");
+            // attroff(COLOR_PAIR(1));
         }
         refresh();
     }
