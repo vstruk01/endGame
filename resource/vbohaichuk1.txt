@@ -1,0 +1,17 @@
+                        bbbbbbbb                                                                                                                                                      
+                        b::::::b                            hhhhhhh                                 iiii                     hhhhhhh                               kkkkkkkk           
+                        b::::::b                            h:::::h                                i::::i                    h:::::h                               k::::::k           
+                        b::::::b                            h:::::h                                 iiii                     h:::::h                               k::::::k           
+                         b:::::b                            h:::::h                                                          h:::::h                               k::::::k           
+vvvvvvv           vvvvvvvb:::::bbbbbbbbb       ooooooooooo   h::::h hhhhh         aaaaaaaaaaaaa   iiiiiii     cccccccccccccccch::::h hhhhh       uuuuuu    uuuuuu   k:::::k    kkkkkkk
+ v:::::v         v:::::v b::::::::::::::bb   oo:::::::::::oo h::::hh:::::hhh      a::::::::::::a  i:::::i   cc:::::::::::::::ch::::hh:::::hhh    u::::u    u::::u   k:::::k   k:::::k 
+  v:::::v       v:::::v  b::::::::::::::::b o:::::::::::::::oh::::::::::::::hh    aaaaaaaaa:::::a  i::::i  c:::::::::::::::::ch::::::::::::::hh  u::::u    u::::u   k:::::k  k:::::k  
+   v:::::v     v:::::v   b:::::bbbbb:::::::bo:::::ooooo:::::oh:::::::hhh::::::h            a::::a  i::::i c:::::::cccccc:::::ch:::::::hhh::::::h u::::u    u::::u   k:::::k k:::::k   
+    v:::::v   v:::::v    b:::::b    b::::::bo::::o     o::::oh::::::h   h::::::h    aaaaaaa:::::a  i::::i c::::::c     ccccccch::::::h   h::::::hu::::u    u::::u   k::::::k:::::k    
+     v:::::v v:::::v     b:::::b     b:::::bo::::o     o::::oh:::::h     h:::::h  aa::::::::::::a  i::::i c:::::c             h:::::h     h:::::hu::::u    u::::u   k:::::::::::k     
+      v:::::v:::::v      b:::::b     b:::::bo::::o     o::::oh:::::h     h:::::h a::::aaaa::::::a  i::::i c:::::c             h:::::h     h:::::hu::::u    u::::u   k:::::::::::k     
+       v:::::::::v       b:::::b     b:::::bo::::o     o::::oh:::::h     h:::::ha::::a    a:::::a  i::::i c::::::c     ccccccch:::::h     h:::::hu:::::uuuu:::::u   k::::::k:::::k    
+        v:::::::v        b:::::bbbbbb::::::bo:::::ooooo:::::oh:::::h     h:::::ha::::a    a:::::a i::::::ic:::::::cccccc:::::ch:::::h     h:::::hu:::::::::::::::uuk::::::k k:::::k   
+         v:::::v         b::::::::::::::::b o:::::::::::::::oh:::::h     h:::::ha:::::aaaa::::::a i::::::i c:::::::::::::::::ch:::::h     h:::::h u:::::::::::::::uk::::::k  k:::::k  
+          v:::v          b:::::::::::::::b   oo:::::::::::oo h:::::h     h:::::h a::::::::::aa:::ai::::::i  cc:::::::::::::::ch:::::h     h:::::h  uu::::::::uu:::uk::::::k   k:::::k 
+           vvv           bbbbbbbbbbbbbbbb      ooooooooooo   hhhhhhh     hhhhhhh  aaaaaaaaaa  aaaaiiiiiiii    cccccccccccccccchhhhhhh     hhhhhhh    uuuuuuuu  uuuukkkkkkkk    kkkkkkk
