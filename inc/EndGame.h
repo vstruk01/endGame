@@ -2,9 +2,13 @@
 
 #include "minilibmx.h"
 
-enum s_direction {
+enum e_direction {
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN,
+    CENTER,
+    NOT_MOVE
 };
 
 #include <ncurses.h>
@@ -12,4 +16,5 @@ enum s_direction {
 #include <termios.h>
 #include <fcntl.h>
 #include <curses.h>
+#include <time.h>
 
