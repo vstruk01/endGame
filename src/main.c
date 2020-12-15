@@ -3,9 +3,23 @@
 #define DELAY 30000
 
 int main() {
+    // char c;
+
+    // int fd = open(5, "rb");
+    // read(5, &c, 1);
+    // printf("%d\n", c);
+    // read(0, &c, 1);
+    // printf("%d\n", c);
+    // read(0, &c, 1);
+    // printf("%d\n", c);
+
     clock_t start = clock();
     clock_t end_time = 0;
 
+    // char *buf1 = mx_strnew(20);
+    // char *buf2 = mx_strnew(20);
+
+    unsigned long speed = 10000;
     char ***numbers = mx_init_numbers();
     enum e_direction direction_h = RIGHT;
     enum e_direction direction_v = CENTER;
@@ -20,6 +34,7 @@ int main() {
 
     initscr();
 
+    // keypad(stdscr, TRUE);
     srand(time(0));
     ball_y = (rand() % getmaxy(stdscr));
     xr2 = getmaxx(stdscr) - 100;
@@ -46,7 +61,11 @@ int main() {
     }
     mx_print_ascii_int(score1, numbers, 30, 5, stdscr);
     mx_print_ascii_int(score2, numbers, getmaxx(stdscr) - 30, 5, stdscr);
+    // attron(A_STANDOUT);
+    // mvwprintw(stdscr, 10, 20, "Hello");
+    // attroff(A_STANDOUT);
 
+    int jj = 10;
     while (true) {
         // int ch = getch();
         // mvprintw(10, 10, "%d", ch);
@@ -60,11 +79,22 @@ int main() {
         int ch = getch();
 
         if (ch != EOF) {
+            mvwprintw(stdscr, 20, jj, "%d", ch);
+            jj += 5;
             if (ch == 27) {
-                getch();
+                // getch();
                 ch = getch();
+                mvwprintw(stdscr, 20, jj, "%d", ch);
+                jj += 5;
+                ch = getch();
+                mvwprintw(stdscr, 20, jj, "%d", ch);
+                jj += 5;
             }
-            while(getch() != EOF) {};
+            // int ch1 = 0;
+            // for (int j = 10; (ch1 = getch()) != EOF; ++j) {
+            //     mvwprintw(stdscr, 20, j, "%d ",ch1);
+            // };
+            // sleep(3);
         }
         switch (ch) {
             case 'w':
@@ -110,7 +140,8 @@ int main() {
         }
         end_time = clock();
 
-        if (end_time - start > 50000) {
+        if ((end_time - start > speed / 2 && direction_h == CENTER) 
+             || (end_time - start > speed && direction_h != CENTER)) {
             start = end_time;
                 mvprintw(ball_y, ball_x, " ");
             direction_h == RIGHT ? ++ball_x : --ball_x;
@@ -124,11 +155,13 @@ int main() {
                 && ball_x == xr2 && direction_h == RIGHT) {
                 direction_h = LEFT;
                 direction_r2 == UP ? (direction_v = UP) : (direction_v = DOWN);
+                printf("\a");
                 --ball_x;
             } else if (ball_y >= yr1 && ball_y <= yr1 + sizer - 1
                        && ball_x == xr1 && direction_h == LEFT) {
                 direction_h = RIGHT;
                 direction_r1 == UP ? (direction_v = UP) : (direction_v = DOWN);
+                printf("\a");
                 ++ball_x;
             }
 
@@ -136,7 +169,7 @@ int main() {
                 direction_v == DOWN ? (direction_v = UP) : (direction_v = DOWN);
             }
 
-            if (ball_x > limit_right) {
+            if (ball_x > limit_right + 50) {
                 mx_clear_int(score1, numbers, 30, 5, stdscr);
                 ball_x = limit_left + 10;
                 ball_y = (rand() % getmaxy(stdscr));
@@ -144,7 +177,7 @@ int main() {
                 direction_v = CENTER;
                 ++score1;
                 mx_print_ascii_int(score1, numbers, 30, 5, stdscr);
-            } else if (ball_x < limit_left) {
+            } else if (ball_x < limit_left - 50) {
                 mx_clear_int(score2, numbers, getmaxx(stdscr) - 30, 5, stdscr);
                 ball_x = limit_left + 10;
                 ball_y = (rand() % getmaxy(stdscr));
