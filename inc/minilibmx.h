@@ -14,3 +14,6 @@ int mx_strcmp(const char *s1, const char *s2);
 bool mx_isdigit(char c);
 bool mx_isspace(char c);
 int mx_atoi(const char *str);
+
+char *mx_strdup(const char *s);
+char *mx_strnew(const int size);

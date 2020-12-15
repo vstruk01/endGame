@@ -18,3 +18,6 @@ enum e_direction {
 #include <curses.h>
 #include <time.h>
 
+char ***mx_init_numbers();
+void mx_print_ascii_int(int n, char ***numbers, int x, int y, WINDOW *win);
+void mx_clear_int(int n, char ***numbers, int x, int y, WINDOW *win);

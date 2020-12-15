@@ -3,20 +3,28 @@
 #define DELAY 30000
 
 int main() {
+    clock_t start = clock();
+    clock_t end_time = 0;
+
+    char ***numbers = mx_init_numbers();
     enum e_direction direction_h = RIGHT;
     enum e_direction direction_v = CENTER;
     enum e_direction direction_r1 = NOT_MOVE;
     enum e_direction direction_r2 = NOT_MOVE;
-    int xr1 = 100, yr1 = 0;          // создаем начальные коородинаты ракетки 1
-    int xr2 = 40, yr2 = 0;          // создаем начальные коородинаты ракетки 2
-    int ball_x = 30, ball_y = 0;
+    int limit_left = 100, limit_right;
+    int xr1 = limit_left, yr1 = 0;          // создаем начальные коородинаты ракетки 1
+    int xr2 = 0, yr2 = 0;          // создаем начальные коородинаты ракетки 2
+    int ball_x = limit_left + 10, ball_y = 0;
     int sizer = 10;                  // создаем переменную размер ракетки
+    int score1 = 0, score2 = 0;
 
     initscr();
 
     srand(time(0));
     ball_y = (rand() % getmaxy(stdscr));
     xr2 = getmaxx(stdscr) - 100;
+    limit_right = xr2;
+
 
     start_color();
     nonl();
@@ -36,6 +44,8 @@ int main() {
         mvprintw(yr2 + i, xr2, " ");
         attroff(COLOR_PAIR(1));
     }
+    mx_print_ascii_int(score1, numbers, 30, 5, stdscr);
+    mx_print_ascii_int(score2, numbers, getmaxx(stdscr) - 30, 5, stdscr);
 
     while (true) {
         // int ch = getch();
@@ -98,34 +108,55 @@ int main() {
                 }
                 break;
         }
+        end_time = clock();
 
-        mvprintw(ball_y, ball_x, " ");
-        direction_h == RIGHT ? ++ball_x : --ball_x;
-        if (direction_v == UP) {
-            --ball_y;
-        } else if (direction_v == DOWN) {
-            ++ball_y;
+        if (end_time - start > 50000) {
+            start = end_time;
+                mvprintw(ball_y, ball_x, " ");
+            direction_h == RIGHT ? ++ball_x : --ball_x;
+            if (direction_v == UP) {
+                --ball_y;
+            } else if (direction_v == DOWN) {
+                ++ball_y;
+            }
+
+            if (ball_y >= yr2 && ball_y <= yr2 + sizer - 1
+                && ball_x == xr2 && direction_h == RIGHT) {
+                direction_h = LEFT;
+                direction_r2 == UP ? (direction_v = UP) : (direction_v = DOWN);
+                --ball_x;
+            } else if (ball_y >= yr1 && ball_y <= yr1 + sizer - 1
+                       && ball_x == xr1 && direction_h == LEFT) {
+                direction_h = RIGHT;
+                direction_r1 == UP ? (direction_v = UP) : (direction_v = DOWN);
+                ++ball_x;
+            }
+
+            if (ball_y < 0 || ball_y >= getmaxy(stdscr)) {
+                direction_v == DOWN ? (direction_v = UP) : (direction_v = DOWN);
+            }
+
+            if (ball_x > limit_right) {
+                mx_clear_int(score1, numbers, 30, 5, stdscr);
+                ball_x = limit_left + 10;
+                ball_y = (rand() % getmaxy(stdscr));
+                direction_h = RIGHT;
+                direction_v = CENTER;
+                ++score1;
+                mx_print_ascii_int(score1, numbers, 30, 5, stdscr);
+            } else if (ball_x < limit_left) {
+                mx_clear_int(score2, numbers, getmaxx(stdscr) - 30, 5, stdscr);
+                ball_x = limit_left + 10;
+                ball_y = (rand() % getmaxy(stdscr));
+                direction_h = RIGHT;
+                direction_v = CENTER;
+                ++score2;
+                mx_print_ascii_int(score2, numbers, getmaxx(stdscr) - 30, 5, stdscr);
+            }
+            mvprintw(ball_y, ball_x, "o");
         }
-
-        if (ball_y >= yr2 && ball_y <= yr2 + sizer - 1
-            && ball_x == xr2 && direction_h == RIGHT) {
-            direction_h = LEFT;
-            direction_r2 == UP ? (direction_v = UP) : (direction_v = DOWN);
-            --ball_x;
-        } else if (ball_y >= yr1 && ball_y <= yr1 + sizer - 1
-                   && ball_x == xr1 && direction_h == LEFT) {
-            direction_h = RIGHT;
-            direction_r1 == UP ? (direction_v = UP) : (direction_v = DOWN);
-            ++ball_x;
-        }
-
-        if (ball_y < 0 || ball_y >= getmaxy(stdscr)) {
-            direction_v == DOWN ? (direction_v = UP) : (direction_v = DOWN);
-        }
-
-        mvprintw(ball_y, ball_x, "o");
         refresh();
-        usleep(40000);
+        // usleep(80000);
     }
     endwin();
 }
