@@ -3,6 +3,8 @@
 #define DELAY 30000
 
 int main() {
+    mx_print_picture();
+
     int direction = false;
     int xr1 = 10, yr1 = 0;      // создаем начальные коородинаты ракетки 1
     int xr2 = 40, yr2 = 0;      // создаем начальные коородинаты ракетки 2

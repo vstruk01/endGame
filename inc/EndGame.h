@@ -13,3 +13,5 @@ enum s_direction {
 #include <fcntl.h>
 #include <curses.h>
 
+void mx_print_picture(void);
+

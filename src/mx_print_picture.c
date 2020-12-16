@@ -1,14 +1,9 @@
-#include <ncurses.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <time.h>
+#include "EndGame.h"
 
 #define SLEEP 40000
 #define SLEEP1 800000
 
-int main (void) {
+void mx_print_picture(void) {
     FILE *file;
     
     
@@ -31,7 +26,7 @@ int main (void) {
 
     int y = 1;
 
-    file = fopen("achaur1.txt", "rb");
+    file = fopen("resource/achaur1.txt", "rb");
  
     while (fread(str, sizeof(char), 111, file)) {
         attrset(COLOR_PAIR(2));
@@ -44,7 +39,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("achaur.txt", "rb");
+    file = fopen("resource/achaur.txt", "rb");
     
     y = 1;
     while (fread(str, sizeof(char), size, file)) {
@@ -59,7 +54,7 @@ int main (void) {
     clear();
 
 
-    file = fopen("vstruk1.txt", "rb");
+    file = fopen("resource/vstruk1.txt", "rb");
     
     y = 1;
     while (fread(str1, sizeof(char), 120, file)) {
@@ -74,7 +69,7 @@ int main (void) {
     clear();
 
 
-    file = fopen("vstruk.txt", "rb");
+    file = fopen("resource/vstruk.txt", "rb");
     
     y = 1;
     while (fread(str1, sizeof(char), size, file)) {
@@ -88,7 +83,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("vshedenko1.txt", "rb");
+    file = fopen("resource/vshedenko1.txt", "rb");
     
     y = 1;
     while (fread(str2, sizeof(char), 172, file)) {
@@ -102,7 +97,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("vshedenko.txt", "rb");
+    file = fopen("resource/vshedenko.txt", "rb");
     
     y = 1;
     while (fread(str2, sizeof(char), size, file)) {
@@ -116,7 +111,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("mkvytkovsk1.txt", "rb");
+    file = fopen("resource/mkvytkovsk1.txt", "rb");
     
     y = 1;
     while (fread(str3, sizeof(char), 208, file)) {
@@ -130,7 +125,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("mkvytkovsk.txt", "rb");
+    file = fopen("resource/mkvytkovsk.txt", "rb");
     
     y = 1;
     while (fread(str3, sizeof(char), size, file)) {
@@ -144,7 +139,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("vbohaichuk1.txt", "rb");
+    file = fopen("resource/vbohaichuk1.txt", "rb");
     
     y = 1;
     while (fread(str4, sizeof(char), 183, file)) {
@@ -158,7 +153,7 @@ int main (void) {
     fclose(file);
     clear();
 
-    file = fopen("vbohaichuk.txt", "rb");
+    file = fopen("resource/vbohaichuk.txt", "rb");
     
     y = 1;
     while (fread(str4, sizeof(char), size, file)) {
