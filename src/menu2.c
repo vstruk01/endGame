@@ -18,10 +18,9 @@ int max_y = 0, max_x = 0, c = 0;
   mvprintw(max_y - 2, 2, "Press 'e' to exit");
   refresh();
   // if (count1 > count2) {
-  //  mvprintw(max_y / 2, (max_x / 2) - (mx_strlen("Player 1 wins!") / 2), "Player 1 wins!");
+   // mvprintw(max_y / 2, (max_x / 2) - (mx_strlen("Player 1 wins!") / 2), "Player 1 wins!");
   //  else mvprintw(max_y - 2, max_x - mx_strlen("Player 2 wins!") - 2, "Player 2 wins!");
   // }
-  
   c = wgetch(stdscr);
   if (c == 'r') break;
   if (c == 'e') break;
