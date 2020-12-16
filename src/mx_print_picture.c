@@ -5,8 +5,6 @@
 
 void mx_print_picture(void) {
     FILE *file;
-    
-    
     initscr();
     curs_set(FALSE);
 
@@ -140,7 +138,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/vbohaichuk1.txt", "rb");
-    
+
     y = 1;
     while (fread(str4, sizeof(char), 183, file)) {
         attrset(COLOR_PAIR(5));
@@ -154,7 +152,6 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/vbohaichuk.txt", "rb");
-    
     y = 1;
     while (fread(str4, sizeof(char), size, file)) {
         attrset(COLOR_PAIR(5));
