@@ -39,24 +39,25 @@ void mx_game_1() {
 	print_menu(game1_win, highlight_game_1, choices_game_1);
 	keypad(game1_win, TRUE);
 	while (true) {
-		int d = wgetch(game1_win);
+		int d = getch();
 		switch(d) {
 			case KEY_UP:
-				mvwprintw(game1_win, 3, 5, "%d", highlight_game_1);
 				if(highlight_game_1 == 0)
 					highlight_game_1 = n_choices - 2;
 				else
 					--highlight_game_1;
+				mvwprintw(game1_win, 3, 3, "%d", highlight_game_1);
 				break;
 			case KEY_DOWN:
-				mvwprintw(game1_win, 3, 5, "%d", highlight_game_1);
 				if(highlight_game_1 == n_choices - 2)
 					highlight_game_1 = 0;
 				else
 					++highlight_game_1;
+				mvwprintw(game1_win, 3, 3, "%d", highlight_game_1);
 				break;
+			case KEY_ENTER:
+				mvwprintw(game1_win, 3, 3, "%d", d);
 		}
-		print_menu(game1_win, highlight_game_1, choices_game_1);
 		if (d == 10 && highlight_game_1 == 0) {
 			clear();
 			mx_ping_pong(EASY);
@@ -73,11 +74,13 @@ void mx_game_1() {
 			clear();
 			break;
 		}
+		print_menu(game1_win, highlight_game_1, choices_game_1);
+		refresh();
 	}
 }
 
 void mx_game_2() {
-	int highlight_game_2 = 1;
+	int highlight_game_2 = 0;
 
 	WINDOW *game2_win = newwin(HEIGHT, WIDTH, starty, startx);
 	print_menu(game2_win, highlight_game_2, choices_game_2);
@@ -86,21 +89,22 @@ void mx_game_2() {
 		int d = wgetch(game2_win);
 		switch(d) {
 			case KEY_UP:
-				mvwprintw(game2_win, 3, 5, "%d", highlight_game_2);
-				if (highlight_game_2 == 1)
-					highlight_game_2 = n_choices;
+				if (highlight_game_2 == 0)
+					highlight_game_2 = n_choices - 2;
 				else
 					--highlight_game_2;
 				break;
 			case KEY_DOWN:
-				mvwprintw(game2_win, 3, 5, "%d", highlight_game_2);
-				if(highlight_game_2 == n_choices)
-					highlight_game_2 = 1;
+				if(highlight_game_2 == n_choices - 2)
+					highlight_game_2 = 0;
 				else
 					++highlight_game_2;
 				break;
 		}
 		print_menu(game2_win, highlight_game_2, choices_game_2);
+		if (d == 10 && highlight_game_2 == 0) {
+			break;
+		}
 		if (d == 10 && highlight_game_2 == 1) {
 			break;
 		}
@@ -110,15 +114,12 @@ void mx_game_2() {
 		if (d == 10 && highlight_game_2 == 3) {
 			break;
 		}
-		if (d == 10 && highlight_game_2 == 4) {
-			break;
-		}
 		print_menu(game2_win, highlight_game_2, choices_game_2);
 	}
 }
 
 void mx_game_3() {
-	int highlight_game_3 = 1;
+	int highlight_game_3 = 0;
 
 	WINDOW *game3_win = newwin(HEIGHT, WIDTH, starty, startx);
 	print_menu(game3_win, highlight_game_3, choices_game_3);
@@ -127,31 +128,29 @@ void mx_game_3() {
 		int d = wgetch(game3_win);
 		switch(d) {
 			case KEY_UP:
-				mvwprintw(game3_win, 3, 5, "%d", highlight_game_3);
-				if(highlight_game_3 == 1)
-					highlight_game_3 = n_choices;
+				if(highlight_game_3 == 0)
+					highlight_game_3 = n_choices - 2;
 				else
 					--highlight_game_3;
 				break;
 			case KEY_DOWN:
-				mvwprintw(game3_win, 3, 5, "%d", highlight_game_3);
-				if(highlight_game_3 == n_choices)
-					highlight_game_3 = 1;
+				if(highlight_game_3 == n_choices - 2)
+					highlight_game_3 = 0;
 				else
 					++highlight_game_3;
 				break;
 		}
 		print_menu(game3_win, highlight_game_3, choices_game_3);
+		if (d == 10 && highlight_game_3 == 0) {
+			break;
+		}
 		if (d == 10 && highlight_game_3 == 1) {
-			break; 
+			break;
 		}
 		if (d == 10 && highlight_game_3 == 2) {
-			break; 
+			break;
 		}
 		if (d == 10 && highlight_game_3 == 3) {
-			break; 
-		}
-		if (d == 10 && highlight_game_3 == 4) {
 			break;
 		}
 	}
@@ -167,8 +166,8 @@ void menu() {
 	char *help_phrase = "Use arrow keys to go up and down, Press enter to select a choice";
 
 	initscr();
-	clear();
 	noecho();
+	timeout(0);
 	cbreak();	/* Line buffering disabled. pass on everything */
 	startx = (getmaxx(stdscr) - WIDTH) / 2;
 	starty = (getmaxy(stdscr) - HEIGHT) / 2;
@@ -195,7 +194,6 @@ void menu() {
 					++highlight;
 				break;
 		}
-		print_menu(menu_win, highlight, choices);
 		if (c == 10 && highlight == 0) {
 			destroy_win(menu_win);
 			mx_game_1();
@@ -213,6 +211,7 @@ void menu() {
 		}
 		if (c == 10 && highlight == 3)
 			break;
+		print_menu(menu_win, highlight, choices);
 	}
 	mvprintw(23, 0, "You chose choice %d with choice string %s\n", choice, choices[choice - 1]);
 	clrtoeol();

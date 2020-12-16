@@ -20,6 +20,11 @@ enum e_lvl {
     HARD
 };
 
+enum e_game {
+    GAME_OVER,
+    PAUSE
+};
+
 #include <ncurses.h>
 #include <sys/ioctl.h>
 #include <termios.h>

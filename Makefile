@@ -1,4 +1,4 @@
-NAME = EndGame
+NAME = endgame
 
 NCURSES = -lncurses
 
