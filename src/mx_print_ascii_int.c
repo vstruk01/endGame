@@ -8,7 +8,6 @@ void mx_print_ascii_int(int n, char ***numbers, int x, int y, WINDOW *win) {
             for (int j = 0; numbers[n % 10][i][j] && numbers[n % 10][i][j] != '\n'; ++j) {
                 mvwprintw(win, y, x + j, "%c", numbers[n % 10][i][j]);
             }
-            // mvwprintw(win, y, x, "%s", numbers[n % 10][i]);
         }
         return;
     }
@@ -25,7 +24,6 @@ static void printint_recursive(int n, char ***numbers, int *x, int y, WINDOW *wi
         for (int j = 0; numbers[n % 10][i][j] && numbers[n % 10][i][j] != '\n'; ++j) {
             mvwprintw(win, y, *x + j, "%c", numbers[n % 10][i][j]);
         }
-        // mvwprintw(win, y, *x, "%s", numbers[n % 10][i]);
     }
     *x += mx_strlen(numbers[n % 10][0]);
 }
