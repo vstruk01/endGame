@@ -2,6 +2,14 @@
 
 #include "minilibmx.h"
 
+#include <ncurses.h>
+#include <sys/ioctl.h>
+#include <termios.h>
+#include <fcntl.h>
+#include <curses.h>
+#include <time.h>
+#include <string.h>
+
 #define WIDTH 30
 #define HEIGHT 10
 
@@ -25,14 +33,28 @@ enum e_game {
     PAUSE
 };
 
-#include <ncurses.h>
-#include <sys/ioctl.h>
-#include <termios.h>
-#include <fcntl.h>
-#include <curses.h>
-#include <time.h>
-#include <string.h>
+enum e_games {
+    PING_PONG,
+    BREAK_OUT,
+    SPASE_INVADERS
+};
 
+typedef struct s_menu {
+    char **main_m;
+    char **pp_m;
+    char **bo_m;
+    char **si_m;
+    char **game_m;
+    char *help_phrase;
+
+    int s_game_m;
+    int s_help_phrase;
+    int s_main_m;
+    int startx;
+    int starty;
+    int count_choices;
+    void (*game)(enum e_lvl);
+}              t_menu;
 
 // * picture
 void mx_print_picture(void);
@@ -45,7 +67,10 @@ void mx_print_ascii_int(int n, char ***numbers, int x, int y, WINDOW *win);
 void mx_clear_int(int n, char ***numbers, int x, int y, WINDOW *win);
 
 // * menu
+t_menu *mx_init_menu();
+WINDOW *mx_init_menu_win(t_menu *menu);
+void mx_clear_menu(t_menu **menu);
 void menu();
-void destroy_win(WINDOW *local_win);
-void print_menu(WINDOW *menu_win, int highlight, char **choises);
+void mx_destroy_win(WINDOW *local_win);
+void mx_print_menu(WINDOW *menu_win, int highlight, char **choises);
 void mx_game_1();

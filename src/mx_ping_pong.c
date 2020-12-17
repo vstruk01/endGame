@@ -3,25 +3,21 @@
 int mx_small_menu(enum e_game game, int count1, int count2) {
     int max_y = 0, max_x = 0, c = 0;
 
-    // initscr();
-    noecho();
-    curs_set(FALSE);
-    // keypad(stdscr, TRUE);
+    keypad(stdscr, TRUE);
     getmaxyx(stdscr, max_y, max_x);
 
     while (1) {
         mvprintw(max_y - 2, 2, "Press 'e' to exit");
         if (count1 > count2 && game == GAME_OVER) {
-            mvprintw(max_y / 2, (max_x / 2) - (mx_strlen("Player 1 wins!") / 2), "Player 1 wins!");
-            mvprintw(max_y - 2, max_x - mx_strlen("Press 'r' to restart") - 2, "Press 'r' to restart");
+            mvprintw(max_y / 2, (max_x / 2) - (mx_strlen("PLAYER 1 HAS WON!") / 2), "PLAYER 1 HAS WON!");
+            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'r' TO RESTART") - 2, "PRESS 'r' TO RESTART");
         } else if (count1 < count2 && game == GAME_OVER) {
-            mvprintw(max_y / 2, (max_x - mx_strlen("Player 2 wins!")) / 2, "Player 2 wins!");
-            mvprintw(max_y - 2, max_x - mx_strlen("Press 'r' to restart") - 2, "Press 'r' to restart");
+            mvprintw(max_y / 2, (max_x - mx_strlen("PLAYER 2 HAS WON!")) / 2, "PLAYER 2 HAS WON!");
+            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'r' TO RESTART") - 2, "PRESS 'r' TO RESTART");
         } else {
             mvprintw(max_y / 2, (max_x - mx_strlen("PAUSE")) / 2, "PAUSE");
-            mvprintw(max_y - 2, max_x - mx_strlen("Press 'c' to continue") - 2, "Press 'c' to continue");
+            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'c' TO CONTINUE") - 2, "PRESS 'c' TO CONTINUE");
         }
-        refresh();
         c = getch();
         if (c == 'r' || c == 'c') {
             erase();
@@ -52,24 +48,13 @@ void mx_ping_pong(enum e_lvl lvl) {
     int sizer = 10;
     int score1 = 0, score2 = 0;
 
-    // initscr();
     keypad(stdscr, TRUE);
-    // srand(time(0));
     ball_y = getmaxy(stdscr) / 2;
     xr2 = getmaxx(stdscr) - 100;
     limit_right = xr2;
 
-    start_color();
-    nonl();
-    cbreak();
-
-    timeout(0);
-    noecho();
-    curs_set(FALSE);
-
     init_pair(1, COLOR_WHITE, COLOR_WHITE);
     init_pair(2, COLOR_WHITE, COLOR_BLACK);
-    // wbkgd(stdscr, COLOR_PAIR(2));
 
     for (int i = 0; i < sizer; ++i) {
         attron(COLOR_PAIR(1));
@@ -95,7 +80,7 @@ void mx_ping_pong(enum e_lvl lvl) {
                 for (int i = 0; i < 3 && yr1  + sizer - 1 < getmaxy(stdscr); ++i, ++yr1) {
                     mvprintw(yr1, xr1, " ");
                     attron(COLOR_PAIR(1));
-                    mvprintw(yr1 + sizer - 1, xr1, " ");
+                    mvprintw(yr1 + sizer, xr1, " ");
                     attroff(COLOR_PAIR(1));
                 }
                 break;
@@ -111,7 +96,7 @@ void mx_ping_pong(enum e_lvl lvl) {
                 for (int i = 0; i < 3 && yr2 + sizer - 1 < getmaxy(stdscr); ++i, ++yr2) {
                     mvprintw(yr2, xr2, " ");
                     attron(COLOR_PAIR(1));
-                    mvprintw(yr2 + sizer - 1, xr2, " ");
+                    mvprintw(yr2 + sizer, xr2, " ");
                     attroff(COLOR_PAIR(1));
                 }
                 break;

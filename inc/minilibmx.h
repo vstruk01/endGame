@@ -17,3 +17,4 @@ int mx_atoi(const char *str);
 
 char *mx_strdup(const char *s);
 char *mx_strnew(const int size);
+void mx_strdel(char **str);
