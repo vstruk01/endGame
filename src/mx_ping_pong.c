@@ -1,37 +1,5 @@
 #include "EndGame.h"
 
-int mx_small_menu(enum e_game game, int count1, int count2) {
-    int max_y = 0, max_x = 0, c = 0;
-
-    keypad(stdscr, TRUE);
-    getmaxyx(stdscr, max_y, max_x);
-
-    while (1) {
-        mvprintw(max_y - 2, 2, "Press 'e' to exit");
-        if (count1 > count2 && game == GAME_OVER) {
-            mvprintw(max_y / 2, (max_x / 2) - (mx_strlen("PLAYER 1 HAS WON!") / 2), "PLAYER 1 HAS WON!");
-            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'r' TO RESTART") - 2, "PRESS 'r' TO RESTART");
-        } else if (count1 < count2 && game == GAME_OVER) {
-            mvprintw(max_y / 2, (max_x - mx_strlen("PLAYER 2 HAS WON!")) / 2, "PLAYER 2 HAS WON!");
-            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'r' TO RESTART") - 2, "PRESS 'r' TO RESTART");
-        } else {
-            mvprintw(max_y / 2, (max_x - mx_strlen("PAUSE")) / 2, "PAUSE");
-            mvprintw(max_y - 2, max_x - mx_strlen("PRESS 'c' TO CONTINUE") - 2, "PRESS 'c' TO CONTINUE");
-        }
-        c = getch();
-        if (c == 'r' || c == 'c') {
-            erase();
-            refresh();
-            return 0;
-        }
-        if (c == 'e') {
-            erase();
-            refresh();
-            return 1;
-        }
-    }
-}
-
 void mx_ping_pong(enum e_lvl lvl) {
     lvl = NORMAL;
     clock_t start = clock();
@@ -101,9 +69,9 @@ void mx_ping_pong(enum e_lvl lvl) {
                 }
                 break;
             case 27:
-                erase();
+                clear();
                 refresh();
-                if (mx_small_menu(PAUSE, 0, 0)) {
+                if (mx_esc_menu(PAUSE, 0, 0)) {
                     return;
                 }
                 for (int i = 0; i < sizer; ++i) {
@@ -166,7 +134,7 @@ void mx_ping_pong(enum e_lvl lvl) {
                 if (score1 >= 5) {
                     erase();
                     refresh();
-                    if (mx_small_menu(GAME_OVER, score1, score2)) {
+                    if (mx_esc_menu(GAME_OVER, score1, score2)) {
                         endwin();
                         return;
                     } else {
@@ -194,7 +162,7 @@ void mx_ping_pong(enum e_lvl lvl) {
                 if (score2 >= 5) {
                     erase();
                     refresh();
-                    if (mx_small_menu(GAME_OVER, score1, score2)) {
+                    if (mx_esc_menu(GAME_OVER, score1, score2)) {
                         endwin();
                         return;
                     } else {

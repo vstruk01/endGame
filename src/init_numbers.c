@@ -20,9 +20,7 @@ char ***mx_init_numbers() {
         for (int j = 0; j < height; ++j){
             char buff1[10];
             fgets(buff1, '\n', file);
-            // printf("%s", buff1);
             numbers[i][j] = mx_strdup(buff1);
-            // printf("%s", numbers[i][j]);
         }
         numbers[i][height] = NULL;
         printf("\n");

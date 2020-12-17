@@ -25,7 +25,7 @@ void mx_print_picture(void) {
     int y = 1;
 
     file = fopen("resource/achaur1.txt", "rb");
- 
+
     while (fread(str, sizeof(char), 111, file)) {
         attrset(COLOR_PAIR(2));
         mvprintw(y + 30, 120, "%s", str);
@@ -38,7 +38,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/achaur.txt", "rb");
-    
+
     y = 1;
     while (fread(str, sizeof(char), size, file)) {
         attrset(COLOR_PAIR(2));
@@ -82,7 +82,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/vshedenko1.txt", "rb");
-    
+
     y = 1;
     while (fread(str2, sizeof(char), 172, file)) {
         attrset(COLOR_PAIR(3));
@@ -96,7 +96,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/vshedenko.txt", "rb");
-    
+
     y = 1;
     while (fread(str2, sizeof(char), size, file)) {
         attrset(COLOR_PAIR(3));
@@ -110,7 +110,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/mkvytkovsk1.txt", "rb");
-    
+
     y = 1;
     while (fread(str3, sizeof(char), 208, file)) {
         attrset(COLOR_PAIR(4));
@@ -124,7 +124,7 @@ void mx_print_picture(void) {
     clear();
 
     file = fopen("resource/mkvytkovsk.txt", "rb");
-    
+
     y = 1;
     while (fread(str3, sizeof(char), size, file)) {
         attrset(COLOR_PAIR(4));

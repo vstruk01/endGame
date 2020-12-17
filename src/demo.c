@@ -73,7 +73,7 @@ void menu() {
                 if (highlight == 0) {
                     menu->game = mx_ping_pong;
                 } else if (highlight == 1) {
-                    menu->game = NULL;
+                    menu->game = mx_breakout;
                 } else if (highlight == 2) {
                     menu->game = NULL;
                 } else {

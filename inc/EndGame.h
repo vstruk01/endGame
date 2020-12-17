@@ -67,6 +67,7 @@ void mx_print_ascii_int(int n, char ***numbers, int x, int y, WINDOW *win);
 void mx_clear_int(int n, char ***numbers, int x, int y, WINDOW *win);
 
 // * menu
+int mx_esc_menu(enum e_game game, int count1, int count2);
 t_menu *mx_init_menu();
 WINDOW *mx_init_menu_win(t_menu *menu);
 void mx_clear_menu(t_menu **menu);
@@ -74,3 +75,7 @@ void menu();
 void mx_destroy_win(WINDOW *local_win);
 void mx_print_menu(WINDOW *menu_win, int highlight, char **choises);
 void mx_game_1();
+
+
+// * breakout
+void mx_breakout(enum e_lvl lvl);
