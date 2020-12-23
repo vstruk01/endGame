@@ -39,6 +39,29 @@ enum e_games {
     SPASE_INVADERS
 };
 
+typedef struct s_ping_pong {
+    char ***numbers;
+
+    unsigned long speed;
+    int limit_left;
+    int limit_right;
+
+    int x_racket_1;
+    int y_racket_1;
+    int x_racket_2;
+    int y_racket_2;
+
+    int x_ball;
+    int y_ball;
+
+    int size_racket;
+    int score_1;
+    int score_2;
+
+    enum e_direction direction_h;
+    enum e_direction direction_v;
+}              t_ping_pong;
+
 typedef struct s_menu {
     char **main_m;
     char **pp_m;
@@ -67,6 +90,7 @@ void mx_print_ascii_int(int n, char ***numbers, int x, int y, WINDOW *win);
 void mx_clear_int(int n, char ***numbers, int x, int y, WINDOW *win);
 
 // * menu
+void mx_game_menu(t_menu *menu);
 int mx_esc_menu(enum e_game game, int count1, int count2);
 t_menu *mx_init_menu();
 WINDOW *mx_init_menu_win(t_menu *menu);
